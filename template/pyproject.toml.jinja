@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "{{project_name|replace("_","-")}}"
+version = "0.1.0"
+description = ""
+authors = ["{{scm_user_name}} <{{scm_user_email}}>"]
+readme = "README.md"
+packages = [{include = "{{project_name|replace("-","_")}}", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.8.0"
+flake8 = "^5.0.4"
+flake8-commas = "^2.1.0"
+isort = "^5.10.1"
+mypy = "^0.971"
+pylint = "^2.15.3"
+pylint-quotes = "^0.2.3"
+pytest = "^7.1.3"
+pytest-cov = "^3.0.0"
+tox = "^3.26.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+skip_gitignore = true
+
+[tool.pytest.ini_options]
+addopts = "--cov=src"
+testpaths = [
+    "tests",
+]

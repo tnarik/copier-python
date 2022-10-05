@@ -1,0 +1,16 @@
+[MAIN]
+load-plugins=
+    pylint.extensions.mccabe,
+    pylint.extensions.check_elif,
+    pylint_quotes,
+max-complexity=10
+
+[FORMAT]
+max-line-length=120
+
+string-quote=double
+triple-quote=double
+docstring-quote=double
+
+[REPORTS]
+output-format=colorized

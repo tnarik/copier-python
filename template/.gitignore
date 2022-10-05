@@ -1,0 +1,9 @@
+.direnv
+.venv
+
+dist
+.tox
+__pycache__
+.coverage
+
+.idea

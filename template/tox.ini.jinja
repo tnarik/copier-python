@@ -1,0 +1,43 @@
+[tox]
+minversion = 3.26.0
+isolated_build = True
+envlist =
+    py38,
+    py39,
+    py310,
+    report,
+
+[testenv:py{38,39,310}]
+deps =
+    pytest
+    pytest-cov
+setenv =
+    COVERAGE_FILE = {toxworkdir}/.coverage.{envname}
+changedir = {envtmpdir}
+commands =
+    - pytest -o addopts= --cov={{project_name}} --junit-xml={toxworkdir}/test_results/tests.{envname}.xml --junit-prefix={envname} {toxinidir}/tests
+
+[testenv:lint]
+deps =
+    pylint
+    pylint-quotes
+commands =
+    pylint src
+
+[testenv:report]
+skip_install = true
+deps = coverage
+setenv =
+    COVERAGE_FILE = {toxworkdir}/.coverage
+depends =
+    py{38,39,310}
+commands =
+    coverage combine
+    coverage report
+    coverage xml
+    coverage html
+
+[coverage:paths]
+package_src =
+    src
+    .tox/p*/lib/python*/site-packages

@@ -1,0 +1,31 @@
+_subdirectory: template
+_jinja_extensions:
+  - copier_templates_extensions.TemplateExtensionLoader
+  - extensions/shell.py:ShellExtension
+
+_tasks:
+  - git init 2>/dev/null || ( echo "GIT required" && exit 1 )
+  - pre-commit install
+
+
+# questions
+project_name:
+    type: str
+    help: project/module name?
+    # default: "{{_copier_conf.dst_path}}"
+
+scm_user_name:
+    type: str
+    help: username in your chosen SCM (GitLab, GitHub, BitBucket)?
+    default: "{{ 'git config user.name' |shell |trim()}}"
+
+scm_user_email:
+    type: str
+    help: user email in your chosen SCM (GitLab, GitHub, BitBucket)?
+    default: "{{ 'git config user.email' |shell |trim()}}"
+
+# ci_type:
+#   type: str
+#   choices:
+#     GitLab: "1"
+#     CircleCI: "2"
