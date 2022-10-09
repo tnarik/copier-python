@@ -4,6 +4,8 @@ _jinja_extensions:
   - extensions/shell.py:ShellExtension
 
 _tasks:
+  - '[ "False" = "{{ ci_use_circleci }}" ] && rm -rf .circleci || exit 0'
+  - '[ "False" = "{{ ci_use_gitlab }}" ] && rm -f .gitlab-ci.yml || exit 0'
   - git init 2>/dev/null || ( echo "GIT required" && exit 1 )
   - pre-commit install
 
@@ -24,8 +26,19 @@ scm_user_email:
     help: user email in your chosen SCM (GitLab, GitHub, BitBucket)?
     default: "{{ 'git config user.email' |shell |trim()}}"
 
-# ci_type:
-#   type: str
-#   choices:
-#     GitLab: "1"
-#     CircleCI: "2"
+ci_use_check:
+    type: bool
+    help: do you want to use a CI/CD pipeline?
+    default: true
+
+ci_use_gitlab:
+    when: "{{ci_use_check}}"
+    type: bool
+    help: "do you want to use GitLab?"
+    default: false
+
+ci_use_circleci:
+    when: "{{ci_use_check}}"
+    type: bool
+    help: "do you want to use CircleCI?"
+    default: false
