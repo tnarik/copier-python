@@ -10,7 +10,7 @@ repos:
 -   repo: https://github.com/pycqa/isort
     rev: 5.10.1
     hooks:
-      - id: isort
+    -   id: isort
         name: isort (python)
 # -   repo: https://github.com/psf/black
 #     rev: 22.8.0
@@ -20,6 +20,7 @@ repos:
     rev: v2.15.3
     hooks:
     -   id: pylint
+        additional_dependencies: ['pylint-quotes']
 -   repo: https://github.com/PyCQA/flake8
     rev: 5.0.4
     hooks:
