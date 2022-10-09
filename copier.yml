@@ -4,8 +4,8 @@ _jinja_extensions:
   - extensions/shell.py:ShellExtension
 
 _tasks:
-  - '[ "False" = "{{ ci_use_circleci }}" ] && rm -rf .circleci || exit 0'
-  - '[ "False" = "{{ ci_use_gitlab }}" ] && rm -f .gitlab-ci.yml || exit 0'
+  - '[ "False" = "{{ ci_use_circleci }}" ] && echo "removing CircleCI support" && rm -rf .circleci || exit 0'
+  - '[ "False" = "{{ ci_use_gitlab }}" ] && echo "removing GitLab CI support" && rm -f .gitlab-ci.yml || exit 0'
   - git init 2>/dev/null || ( echo "GIT required" && exit 1 )
   - pre-commit install
 
