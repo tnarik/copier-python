@@ -16,11 +16,11 @@ repos:
 #     rev: 22.8.0
 #     hooks:
 #     -   id: black
--   repo: https://github.com/PyCQA/pylint
-    rev: v2.15.3
-    hooks:
-    -   id: pylint
-        additional_dependencies: ['pylint-quotes']
+# -   repo: https://github.com/PyCQA/pylint
+#     rev: v2.15.3
+#     hooks:
+#     -   id: pylint
+#         additional_dependencies: ['pylint-quotes']
 -   repo: https://github.com/PyCQA/flake8
     rev: 5.0.4
     hooks:
@@ -29,3 +29,10 @@ repos:
     rev: 2.6.1
     hooks:
     -   id: editorconfig-checker
+-   repo: local
+    hooks:
+    -   id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
