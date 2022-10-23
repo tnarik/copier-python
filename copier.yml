@@ -26,6 +26,11 @@ scm_user_email:
     help: user email in your chosen SCM (GitLab, GitHub, BitBucket)?
     default: "{{ 'git config user.email' |shell |trim()}}"
 
+use_notebooks:
+    type: bool
+    help: are you going to use notebooks?
+    default: false
+
 ci_use_check:
     type: bool
     help: do you want to use a CI/CD pipeline?

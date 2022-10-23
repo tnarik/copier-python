@@ -20,11 +20,6 @@ repos:
 #     rev: 22.8.0
 #     hooks:
 #     -   id: black
-# -   repo: https://github.com/PyCQA/pylint
-#     rev: v2.15.3
-#     hooks:
-#     -   id: pylint
-#         additional_dependencies: ['pylint-quotes']
 -   repo: https://github.com/PyCQA/flake8
     rev: 5.0.4
     hooks:
@@ -40,3 +35,16 @@ repos:
         entry: pylint
         language: system
         types: [python]
+{%- if use_notebooks %}
+    -   id: nbqa-pylint
+        name: pylint (notebooks)
+        entry: nbqa pylint
+        language: system
+        types_or: [jupyter, markdown]
+-   repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.5.3
+    hooks:
+    -   id: nbqa-isort
+        name: isort (notebooks)
+        additional_dependencies: [isort==5.10.1]
+{%- endif %}

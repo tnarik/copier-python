@@ -24,6 +24,18 @@ Generation of a project is as simple as running:
 
 `copier "gh:tnarik/copier-python" /path/to/your/new/project`
 
+### Additional setup
+
+Once the project has been created, you can go ahead and `cd` into the project folder.
+If your system is configured to run the `direnv` hooks (it should, see [WORKBENCH.md](WORKBENCH.md)), then you just need to execute:
+
+```
+direnv allow .
+poetry install
+```
+
+These commands will setup the automated activation of the project local virtual environment and install all DEV dependencies.
+
 ## Alternatives
 
 Perhaps something like [pawamoy/copier-poetry](https://github.com/pawamoy/copier-poetry) is preferable for some people, but it includes too much magic and post-generation scripts which is something I prefer not using. In any case, you can give it a try.
